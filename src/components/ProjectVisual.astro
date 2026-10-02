@@ -1,0 +1,28 @@
+---
+interface Props { kind: 'studio' | 'uniflow' | 'localflow' }
+const { kind } = Astro.props;
+const waveform = [10,18,30,16,42,60,34,76,48,86,58,34,68,92,50,74,38,58,88,64,32,48,72,44,28,56,36,18,30,12];
+---
+<div class:list={['project-visual', `visual-${kind}`]}>
+  {kind === 'studio' && <div class="retrieval-illustration" role="img" aria-label="Studio architecture: documents flow into hybrid search, then a grounded answer with source references.">
+    <div class="diagram-heading"><span class="small-symbol" aria-hidden="true">✳</span> Studio <span class="diagram-note">Retrieval, with context</span></div>
+    <div class="retrieval-body">
+      <div class="document-stack"><div class="document"><span>PDF</span><i></i><i></i><i></i></div><div class="document front"><span>Your documents</span><i></i><i></i><i></i><i></i></div></div>
+      <div class="flow-line" aria-hidden="true"></div>
+      <div class="search-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="5.5"/><path d="m14 14 5 5"/></svg><strong>Hybrid search</strong><small>Dense + BM25</small></div>
+      <div class="flow-line" aria-hidden="true"></div>
+      <div class="answer-node"><span class="answer-mark" aria-hidden="true">✳</span><strong>Grounded answers.</strong><p>Connected to<br/>your sources.</p><div class="source-tags"><span>01</span><span>02</span></div></div>
+    </div>
+    <div class="diagram-footer"><span>Documents in. Context out.</span><span>Local-first retrieval</span></div>
+  </div>}
+  {kind === 'uniflow' && <div class="degree-illustration" role="img" aria-label="Illustration of UniFlow's degree map, connecting foundations to algorithms, systems, and machine learning.">
+    <div class="diagram-heading"><span class="small-symbol" aria-hidden="true">⌘</span> UniFlow <span class="diagram-note">A clearer path to graduation</span></div>
+    <div class="degree-map"><div class="course root-course">CS foundations <span>✓</span></div><div class="branch-line" aria-hidden="true"></div><div class="course-row"><div class="course">Algorithms</div><div class="course">Systems</div></div><div class="branch-line lower" aria-hidden="true"></div><div class="course last-course">Machine learning <span aria-hidden="true">↗</span></div></div>
+    <div class="diagram-footer"><span class="legend"><i aria-hidden="true"></i> Connected requirements</span><span>In your browser</span></div>
+  </div>}
+  {kind === 'localflow' && <div class="speech-illustration" role="img" aria-label="LocalFlow workflow illustration: speech is transcribed locally, then the transcript is cleaned with Groq and pasted into an application.">
+    <div class="diagram-heading"><span class="small-symbol" aria-hidden="true">≋</span> LocalFlow <span class="diagram-note">From voice to words</span></div>
+    <div class="speech-body"><div class="waveform" aria-hidden="true">{waveform.map(height => <i style={`--bar-height:${height}%`}></i>)}</div><div class="transcript"><span>Speak. Refine. Paste.</span><p>Your thoughts, without the typing.</p><span class="text-caret" aria-hidden="true"></span></div></div>
+    <div class="diagram-footer"><span>Local speech recognition</span><span>Cloud text cleanup</span></div>
+  </div>}
+</div>
